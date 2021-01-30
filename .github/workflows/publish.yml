@@ -32,14 +32,12 @@ jobs:
 
           LATEST=`npm view . version`
           CURRENT=`cat package.json | jq -r .version`
-          LATEST=`echo $LATEST | sed 's/\.//g'`
-          CURRENT=`echo $CURRENT | sed 's/\.//g'`
 
           echo "latest version : $LATEST"
           echo "current version : $CURRENT"
           pwd
           ls -al
-          val=$(node src/version.js)
+          val=$(node version.js)
           echo "node returned: $val"
           if [[ LATEST -gt CURRENT ]]; then
             echo "$LATEST > $CURRENT"
