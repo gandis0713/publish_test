@@ -33,7 +33,7 @@ jobs:
           echo "current version : $CURRENT"
 
           minVersion=$(printf '%s\n' "$LATEST" "$CURRENT" | sort -V | head -n1)
-          if [ "$minVersion" = "$CURRENT" ]; then
+          if [ "$minVersion" != "$CURRENT" ]; then
             git config --global user.name "gandis"
             git config --global user.email "gandis0713@gmail.com"
             echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
