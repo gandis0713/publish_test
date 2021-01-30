@@ -29,5 +29,5 @@ jobs:
           git config --global user.name "gandis"
           git config --global user.email "gandis0713@gmail.com"
           echo "//npm.pkg.github.com/:_authToken=$NPM_TOKEN" > ~/.npmrc
-          yarn publish
+          npm publish
 
