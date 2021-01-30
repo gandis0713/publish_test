@@ -17,10 +17,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12
-      - name: Install dependencies
-        run: yarn
-      - name: Build
-        run: yarn build
       - name: publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -34,6 +30,8 @@ jobs:
 
           minVersion=$(printf '%s\n' "$LATEST" "$CURRENT" | sort -V | head -n1)
           if [ "$minVersion" != "$CURRENT" ]; then
+            yarn
+            yarn build
             git config --global user.name "gandis"
             git config --global user.email "gandis0713@gmail.com"
             echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
