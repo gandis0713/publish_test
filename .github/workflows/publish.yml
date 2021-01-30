@@ -1,35 +1,26 @@
-name: Release
+name: Publish
 on:
-  push:
-    branches:
-      - master
-
+  release:
+    types:
+      - created
 jobs:
-  publish:
-    name: Publish
-    runs-on: ubuntu-18.04
+  main:
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: Setup node
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - name: Install dependencies
-        run: yarn
-      - name: Build
-        run: yarn build
-      - name: Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          registry-url: https://npm.pkg.github.com
+          scope: '@okuryu'
+      - name: npm publish
         run: |
-          git config --global user.name "gandis"
-          git config --global user.email "gandis0713@gmail.com"
-          echo "//npm.pkg.github.com/:_authToken=6626e0f3-2859-49b9-b8fb-0fd84fffe61d" > ~/.npmrc
-          cat ~/.npmrc
-          echo $NPM_TOKEN
-          npm publish
-
+          LATEST=`npm view . version`
+          CURRENT=`cat package.json | jq -r .version`
+          if [ "$LATEST" != "$CURRENT" ]
+          then
+            npm ci
+            npm publish
+          fi
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
