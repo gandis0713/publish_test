@@ -17,8 +17,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12
-      # - name: Install dependencies
-      #   run: yarn
+      - name: Install dependencies
+        run: yarn
       # - name: Build
       #   run: yarn build
       - name: Release
@@ -37,7 +37,8 @@ jobs:
 
           echo "latest version : $LATEST"
           echo "current version : $CURRENT"
-          node -v
+          val=$(node ~/src/version.js)
+          echo "node returned: $val"
           if [[ LATEST -gt CURRENT ]]; then
             echo "$LATEST > $CURRENT"
             yarn
