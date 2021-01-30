@@ -21,10 +21,11 @@ jobs:
           git config --global user.email "gandis0713@gmail.com"
           LATEST=`npm view . version`
           CURRENT=`cat package.json | jq -r .version`
-          echo $LATEST
-          echo $CURRENT
-          if [ "$LATEST" != "$CURRENT" ]
-          then
+          LATEST=`echo $LATEST | sed 's/\.//g'`
+          CURRENT=`echo $CURRENT | sed 's/\.//g'`
+
+          if [[ LATEST -gt CURRENT ]]; then
+            echo "$LATEST > $CURRENT"
             yarn
             yarn build
             npm publish
