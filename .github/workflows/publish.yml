@@ -35,14 +35,10 @@ jobs:
 
           echo "latest version : $LATEST"
           echo "current version : $CURRENT"
-          pwd
-          ls -al
-          val=$(node version.js)
-          echo "node returned: $val"
-          if [[ LATEST -gt CURRENT ]]; then
-            echo "$LATEST > $CURRENT"
-            yarn
-            yarn build
+
+          currentver="5.0.1"
+          requiredver="5.0.2"
+          version=$(printf '%s\n' "$requiredver" "$currentver" | sort -V | head -n1)
+          if [ "$minVersion" != "$requiredver" ]; then 
             npm publish
           fi
-
