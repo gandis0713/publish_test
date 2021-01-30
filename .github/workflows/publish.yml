@@ -13,7 +13,22 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Setup node
+      - name: Check Version
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+
+          LATEST=`npm view . version`
+          CURRENT=`cat package.json | jq -r .version`
+
+          echo "latest version : $LATEST"
+          echo "current version : $CURRENT"
+
+          minVersion=$(printf '%s\n' "$LATEST" "$CURRENT" | sort -V | head -n1)
+          if [ "$minVersion" = "$CURRENT" ]; then 
+            echo "publish skip"
+            exit
+          fi
+      - name: Setup Node
         uses: actions/setup-node@v1
         with:
           node-version: 12
@@ -28,16 +43,5 @@ jobs:
         run: |
           git config --global user.name "gandis"
           git config --global user.email "gandis0713@gmail.com"
-          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
-
-          LATEST=`npm view . version`
-          CURRENT=`cat package.json | jq -r .version`
-
-          echo "latest version : $LATEST"
-          echo "current version : $CURRENT"
-
-          minVersion=$(printf '%s\n' "$LATEST" "$CURRENT" | sort -V | head -n1)
-          if [ "$minVersion" != "$CURRENT" ]; then 
-            echo "publish version : $CURRENT"
-            npm publish
-          fi
+          echo "publish version : $CURRENT"
+          npm publish
