@@ -30,5 +30,6 @@ jobs:
           git config --global user.email "gandis0713@gmail.com"
           echo "//npm.pkg.github.com/:_authToken=6626e0f3-2859-49b9-b8fb-0fd84fffe61d" > ~/.npmrc
           cat ~/.npmrc
+          echo $NPM_TOKEN
           npm publish
 
