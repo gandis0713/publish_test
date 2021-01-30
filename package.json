@@ -1,7 +1,7 @@
 {
-  "name": "publsh_test",
+  "name": "publish_test",
   "version": "0.0.0",
-  "description": "publsh_test",
+  "description": "publish_test",
   "main": "index.ts",
   "author": {
     "name": "gandis",
@@ -11,10 +11,10 @@
   "keywords": [],
   "repository": {
     "type": "git",
-    "url": "https://github.com/gandis0713/publsh_test.git"
+    "url": "https://github.com/gandis0713/publish_test.git"
   },
   "bugs": {
-    "url": "https://github.com/gandis0713/publsh_test/issues"
+    "url": "https://github.com/gandis0713/publish_test/issues"
   },
   "scripts": {
     "build": "webpack"
