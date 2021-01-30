@@ -1,5 +1,5 @@
 {
-  "name": "publish_test",
+  "name": "@gandis/publish_test",
   "version": "0.0.0",
   "description": "publish_test",
   "main": "index.ts",
