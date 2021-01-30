@@ -37,6 +37,7 @@ jobs:
 
           echo "latest version : $LATEST"
           echo "current version : $CURRENT"
+          node -v
           if [[ LATEST -gt CURRENT ]]; then
             echo "$LATEST > $CURRENT"
             yarn
