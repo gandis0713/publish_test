@@ -24,6 +24,8 @@ jobs:
           LATEST=`echo $LATEST | sed 's/\.//g'`
           CURRENT=`echo $CURRENT | sed 's/\.//g'`
 
+          echo "$LATEST"
+          echo "$CURRENT"
           if [[ LATEST -gt CURRENT ]]; then
             echo "$LATEST > $CURRENT"
             yarn
