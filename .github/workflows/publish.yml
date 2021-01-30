@@ -13,6 +13,9 @@ jobs:
         with:
           node-version: 12
       - name: npm publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           git config --global user.name "gandis"
           git config --global user.email "gandis0713@gmail.com"
@@ -24,7 +27,4 @@ jobs:
             yarn build
             npm publish
           fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
