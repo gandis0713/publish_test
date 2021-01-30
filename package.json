@@ -38,5 +38,6 @@
     "commitizen": {
       "path": "cz-conventional-changelog"
     }
-  }
+  },
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" }
 }
