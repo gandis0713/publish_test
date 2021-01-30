@@ -1,7 +1,7 @@
 {
-  "name": "@gandis/publish_test",
+  "name": "gandis-npm-publish-test",
   "version": "0.0.0",
-  "description": "publish_test",
+  "description": "publish-test",
   "main": "index.ts",
   "author": {
     "name": "gandis",
