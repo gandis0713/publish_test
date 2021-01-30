@@ -38,6 +38,7 @@ jobs:
           echo "latest version : $LATEST"
           echo "current version : $CURRENT"
           pwd
+          ls -al
           val=$(node ~/src/version.js)
           echo "node returned: $val"
           if [[ LATEST -gt CURRENT ]]; then
