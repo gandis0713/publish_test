@@ -36,9 +36,7 @@ jobs:
           echo "latest version : $LATEST"
           echo "current version : $CURRENT"
 
-          currentver="5.0.1"
-          requiredver="5.0.2"
-          version=$(printf '%s\n' "$requiredver" "$currentver" | sort -V | head -n1)
-          if [ "$minVersion" != "$requiredver" ]; then 
+          minVersion=$(printf '%s\n' "$LATEST" "$CURRENT" | sort -V | head -n1)
+          if [ "$minVersion" != "$CURRENT" ]; then 
             npm publish
           fi
